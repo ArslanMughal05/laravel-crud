@@ -3,7 +3,7 @@
 
 <!-- Button trigger modal -->
 <center>
-<button type="button" class="btn btn-outline-danger fw-bold fs-5 mt-5 rounded-pill " data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary fw-bold fs-5 mt-5 rounded-pill " data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add Record
 </button>
 
@@ -30,7 +30,7 @@
             <div class="mb-2">
                 <input type="file" name="image" class="form-control" name="" id="">
             </div>
-            <button type="submit" class="btn btn-outline-danger fw-bold fs-5 rounded-pill" >Add Record</button>
+            <button type="submit" class="btn btn-primary fw-bold fs-5 rounded-pill" >Add Record</button>
 
         </form>
 
@@ -50,16 +50,25 @@
         <th>Product Name</th>
         <th>Product Price</th>
         <th>Product Image</th>
+        <th>Update</th>
+        <th>Delete</th>
     </thead>
     <tbody class="text-black bg-light fs-4">
         @foreach($data as $item)
 
         <tr>
-            <td class="pt-5">{{$item ['Id']}}</td>
-            <td class="pt-5">{{$item ['PName']}}</td>
-            <td class="pt-5">{{$item ['PPrice']}}</td>
+          <form action="updatedelete" method="get">
+            <td class="pt-5"> <input type="hidden" name="id" value="{{$item ['Id']}}"> {{$item ['Id']}}</td>
+            <td class="pt-5"><input type="hidden" name="name" value="{{$item ['PName']}}">{{$item ['PName']}}</td>
+            <td class="pt-5"><input type="hidden" name="price" value="{{$item ['PPrice']}}">{{$item ['PPrice']}}</td>
             <td><img src="images/{{$item ['PImage']}}" width="100px" height="100px" alt=""></td>
+
+            <td class="pt-5"> <input type="submit" class="btn btn-outline-warning rounded-pill" name="update" value="Update"> </td>
+            <td class="pt-5"> <input type="submit" class="btn btn-outline-danger rounded-pill" value="Delete"> </td>
+
+          </form>
         </tr>
+
         @endforeach
     </tbody>
 </table>

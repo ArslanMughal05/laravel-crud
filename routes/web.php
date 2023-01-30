@@ -20,3 +20,7 @@ Route::get('/', function () {
 
 Route::post('insertData' , [mycontroller::class ,'insert']); 
 Route::get('/', [mycontroller::class, 'readdata']);
+Route::get('updatedelete' , [mycontroller::class, 'updateordelete']);
+Route::get('updatedata', [mycontroller::class, 'update']);
+
+?>

@@ -33,4 +33,36 @@ class mycontroller extends Controller
         return view('insertRead' , ['data'=>$pdata]);
     }
 
+    function updateordelete(Request $req)
+    {
+        $id = $req->get('id');
+        $name = $req->get('name');
+        $price = $req->get('price');
+
+        if($req->get('update') == 'Update')
+        {
+            return view('updateview', ['pid'=>$id, 'pname'=> $name, 'pprice' =>$price]);
+        }
+        else
+        {
+          $pro = product::find($id);
+          $pro->delete();
+        }
+
+         return  redirect('/');
+    }
+
+    function update(Request $req)
+    {
+        $ID = $req->get('id');
+        $Name = $req->get('name');
+        $Price = $req->get('price');
+        $pro = product::find($ID);
+        $pro->PName = $Name;
+        $pro->PPrice = $Price;
+        $pro->save();
+        return redirect('/');
+
+    }
+
 }
